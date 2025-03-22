@@ -37,7 +37,7 @@ export class HelloWorldPanel {
         // And restrict the webview to only loading content from our extension's `media` directory.
         localResourceRoots: [
           vscode.Uri.joinPath(extensionUri, "media"),
-          vscode.Uri.joinPath(extensionUri, "out/compiled"),
+          vscode.Uri.joinPath(extensionUri, "webviews"),
         ],
       }
     );
@@ -125,7 +125,7 @@ export class HelloWorldPanel {
   private _getHtmlForWebview(webview: vscode.Webview) {
     // // And the uri we use to load this script in the webview
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "main.js")
+      vscode.Uri.joinPath(this._extensionUri, "webviews/build/assets","tools.js")
     );
 
     // Uri to load styles into webview
@@ -158,11 +158,9 @@ export class HelloWorldPanel {
         </script>
 			</head>
       <body>
-      <h1>Hello World</h1>
-      <input/>
-      <button>Press me</button>
+        <div id="root"></div>
 			</body>
-      <script src="${scriptUri}" nonce="${nonce}">
+      <script type="module" src="${scriptUri}" nonce="${nonce}">
 			</html>`;
   }
 }

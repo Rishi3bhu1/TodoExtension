@@ -9,13 +9,47 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vstodo-sidebar-view",
+          "title": "VSTodo",
+          "icon": "media/checklist.svg"
+        }
+      ]
+    },
+    "views": {
+      "vstodo-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "vstodo-sidebar",
+          "name": "VSTodo",
+          "icon": "media/checklist.svg",
+          "contextualTitle": "VSTodo"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "todo.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command":"todo.refresh",
+        "title":"Refresh",
+        "category": "refreshVSCode"
+      },
+      {
+        "command": "extension.showSidebar",
+        "title": "show sidebar"
+      },
+      {
+        "command": "extension.showTools",
+        "title": "show tools"
       }
     ]
   },
